@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+<head>
+    <title>Employee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- Angular Route -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">UI-Routing</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a ui-sref="home">Home</a></li>
+      <li><a ui-sref="about">About</a></li>
+    </ul>
+  </div>
+</nav>
+    <div ui-view></div>
+    <script>
+        var myApp = angular.module("test",["ui.router"]);
+        myApp.config(function($stateProvider){
+            $stateProvider.state("home",{
+                url : "/home" ,
+                templateUrl : "home.html"
+            }).state("about",{
+                url : "/about" , 
+                views : {
+                    "" : { templateUrl : "about.html"},
+                    "viewone@about" : { template : "I am view one" },
+                    "viewtwo@about" : { template : "I am view one" }
+                }
+            }).state("home.page1",{
+                url : "/page1" , 
+                template : "<h3>This is Page-One</h3>"
+            }).state("home.page2" ,{
+                url : "/page2" , 
+                template : "<h3>This is Page-Two</h3>"
+            });
+        });
+        
+    </script>
+</body>
+</html>
